@@ -1,0 +1,24 @@
+{
+  "name": "twinsen/amazon-mws-repricing",
+  "description": "Amazon Repricing Helper Classes",
+  "minimum-stability": "stable",
+  "license": "GNU3",
+  "authors": [
+    {
+      "name": "Elias Kotlyar",
+      "email": "eko@hotbytes.de"
+    }
+  ],
+  "require": {
+    "plugmystore/amazon-mws-feeds": "dev-master",
+    "parsecsv/php-parsecsv": "0.4.5"
+  },
+  "repositories": [
+
+  ],
+  "autoload": {
+    "psr-4": {
+      "Twinsen\\AmazonMwsRepricing\\": ["src/"]
+    }
+  }
+}
