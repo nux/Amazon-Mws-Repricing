@@ -3,7 +3,7 @@ Amazon MWS Repricing Helper Classes
 
 Usage:
 
-$config = new \Twinsen\AmazonRepricer\AmazonMws\Models\ConfigModel();
+$config = new \Twinsen\AmazonMwsRepricing\Models\ConfigModel();
 
 $config->setServiceUrl("https://mws.amazonservices.de/");
 
