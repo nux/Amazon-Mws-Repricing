@@ -1,7 +1,7 @@
 <?php
 namespace Twinsen\AmazonMwsRepricing\Models;
 
-class ConfigModel implements ConfigInterface
+class MwsConfigModel implements MwsConfigInterface
 {
     /**
      * @var string

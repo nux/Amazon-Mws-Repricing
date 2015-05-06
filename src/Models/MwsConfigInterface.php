@@ -2,7 +2,7 @@
 namespace Twinsen\AmazonMwsRepricing\Models;
 
 
-interface ConfigInterface
+interface MwsConfigInterface
 {
     /**
      * @return string

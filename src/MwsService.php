@@ -1,6 +1,6 @@
 <?php
 namespace Twinsen\AmazonMwsRepricing;
-use Twinsen\AmazonMwsRepricing\Models\ConfigInterface;
+use Twinsen\AmazonMwsRepricing\Models\MwsConfigInterface;
 use Twinsen\AmazonMwsRepricing\Models\ReportListItem;
 use \Twinsen\AmazonMwsRepricing\Processors\MerchantDataListingProcessor;
 /**
@@ -10,7 +10,7 @@ use \Twinsen\AmazonMwsRepricing\Processors\MerchantDataListingProcessor;
 class MwsService
 {
     /**
-     * @var ConfigInterface
+     * @var MwsConfigInterface
      */
     public $config;
     /**
@@ -18,10 +18,10 @@ class MwsService
      */
     public $service;
     /**
-     * @param ConfigInterface $config
+     * @param MwsConfigInterface $config
      */
 
-    public function connect(ConfigInterface $config)
+    public function connect(MwsConfigInterface $config)
     {
         $configArray = array(
             'ServiceURL' => $config->getServiceUrl(),
