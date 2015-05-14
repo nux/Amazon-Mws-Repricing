@@ -49,7 +49,7 @@ class MwsService
             $getReportListResult = $response->getGetReportListResult();
             $reportInfoList = $getReportListResult->getReportInfoList();
             foreach ($reportInfoList as $reportInfo) {
-                $report = new PriceChangeItem();
+                $report = new ReportListItem();
                 if ($reportInfo->isSetReportId())
                 {
                     $report->setReportId($reportInfo->getReportId());
@@ -103,7 +103,7 @@ class MwsService
     public function getLastInventoryReport(){
         // Get Report Id:
         $reportList = $this->getReportList();
-        $lastReport = new PriceChangeItem();
+        $lastReport = new ReportListItem();
         foreach($reportList as $report){
             if($report->getReportType()!="_GET_MERCHANT_LISTINGS_DATA_"){
                 continue;
