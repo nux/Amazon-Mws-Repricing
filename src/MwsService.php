@@ -1,7 +1,7 @@
 <?php
 namespace Twinsen\AmazonMwsRepricing;
 use Twinsen\AmazonMwsRepricing\Models\MwsConfigInterface;
-use Twinsen\AmazonMwsRepricing\Models\ReportListItem;
+use Twinsen\AmazonMwsRepricing\Models\PriceChangeItem;
 use \Twinsen\AmazonMwsRepricing\Processors\MerchantDataListingProcessor;
 /**
  * Class MwsClient
@@ -49,7 +49,7 @@ class MwsService
             $getReportListResult = $response->getGetReportListResult();
             $reportInfoList = $getReportListResult->getReportInfoList();
             foreach ($reportInfoList as $reportInfo) {
-                $report = new ReportListItem();
+                $report = new PriceChangeItem();
                 if ($reportInfo->isSetReportId())
                 {
                     $report->setReportId($reportInfo->getReportId());
@@ -84,7 +84,7 @@ class MwsService
      * @param ReportListItem $report
      * @return string
      */
-    public function getReport(ReportListItem $report){
+    public function getReport(PriceChangeItem $report){
 
         $request = new \MarketplaceWebService_Model_GetReportRequest();
         $request->setReport(@fopen('php://memory', 'rw+'));
@@ -103,7 +103,7 @@ class MwsService
     public function getLastInventoryReport(){
         // Get Report Id:
         $reportList = $this->getReportList();
-        $lastReport = new ReportListItem();
+        $lastReport = new PriceChangeItem();
         foreach($reportList as $report){
             if($report->getReportType()!="_GET_MERCHANT_LISTINGS_DATA_"){
                 continue;

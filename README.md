@@ -47,6 +47,26 @@ echo $paaService->debugResponse($response);
 
 
 
+Getting Prices(Finally)
+1. Register a AWS Account
+2. Create a IAM User,grant SQS Support to it
+3. Create SQS Queue
+3. Use following Tutorial : http://docs.developer.amazonservices.com/en_IT/subscriptions/Subscriptions_ReceivingNotifications.html to give acess to the Amazon MWS
+4. Use Mws to put the Key on it:
+
+```
+$mwsService = new \Twinsen\AmazonMwsRepricing\MwsSubscriptionService();
+$mwsService->connect($mwsConfig);
+$mwsService->registerDestination('https://sqs.eu-central-1.amazonaws.com/***');
+$mwsService->createSubscription('https://sqs.eu-central-1.amazonaws.com/***');
+```
+5. Look at the Queue in Console Manager
+6. If you want to know the Format,use following Link
+https://gist.github.com/hakanensari/9f3e14d18a44f0d1c153
+
+
+Another tnteressting Projects to Watch:
+https://github.com/wp-plugins/wp-lister-for-amazon/blob/0cfdc6f7e143454ab5ed6b0b12b7d4272250fb6e/classes/helper/WPLA_FeedDataBuilder.php
 
 
 

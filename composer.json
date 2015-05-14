@@ -13,7 +13,9 @@
     "plugmystore/amazon-mws-feeds": "dev-master",
     "parsecsv/php-parsecsv": "0.4.5",
     "raffw/mws-product-api": "dev-master",
-    "exeu/apai-io": "dev-master"
+    "exeu/apai-io": "dev-master",
+    "twinsen/mws-subscription-api":"dev-master",
+    "aws/aws-sdk-php":"dev-master"
   },
   "repositories": [
 
