@@ -41,6 +41,9 @@ class PriceChangeDataProcessor
             }
             $condition = (string)$offer->SubCondition;
             switch ($condition) {
+                case "new":
+                    $item->setCondition(ItemCondition::CONDITION_NEW);
+                    break;
                 case "good":
                     $item->setCondition(ItemCondition::CONDITION_GOOD);
                     break;
