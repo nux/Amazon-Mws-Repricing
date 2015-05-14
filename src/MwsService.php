@@ -2,6 +2,7 @@
 namespace Twinsen\AmazonMwsRepricing;
 use Twinsen\AmazonMwsRepricing\Models\MwsConfigInterface;
 use Twinsen\AmazonMwsRepricing\Models\PriceChangeItem;
+use Twinsen\AmazonMwsRepricing\Models\ReportListItem;
 use \Twinsen\AmazonMwsRepricing\Processors\MerchantDataListingProcessor;
 /**
  * Class MwsClient
@@ -84,7 +85,7 @@ class MwsService
      * @param ReportListItem $report
      * @return string
      */
-    public function getReport(PriceChangeItem $report){
+    public function getReport(ReportListItem $report){
 
         $request = new \MarketplaceWebService_Model_GetReportRequest();
         $request->setReport(@fopen('php://memory', 'rw+'));
