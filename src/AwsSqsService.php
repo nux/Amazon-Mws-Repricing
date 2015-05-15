@@ -67,9 +67,13 @@ class AwsSqsService
      * @return PriceChangeMessage[]
      */
 
-    public function getPriceUpdates($queueUrl, $maximalMessages = 1)
+    public function getPriceUpdates($queueUrl,$messageCount=false)
     {
-        $messages = $this->receiveMessages($queueUrl, $maximalMessages);
+        if($messageCount==false){
+            $messages = $this->receiveAllMessages($queueUrl);
+        }else{
+            $messages = $this->receiveMessages($queueUrl, $messageCount);
+        }
         $dataProcessor = new \Twinsen\AmazonMwsRepricing\Processors\PriceChangeDataProcessor();
         $items = array();
         foreach ($messages as $message) {
@@ -77,6 +81,25 @@ class AwsSqsService
         }
 
         return $items;
+    }
+    public function receiveAllMessages($queueUrl){
+        $messageCount = $this->getMessageCount($queueUrl);
+        $totalRequests = ceil($messageCount / 10);
+        $retMessages = array();
+        for($i = 0;$i < $totalRequests;$i++){
+            $retMessages = array_merge($retMessages,$this->receiveMessages($queueUrl,10));
+        }
+        return $retMessages;
+    }
+    public function getMessageCount($queueUrl){
+        $result = $this->service->getQueueAttributes(array(
+            // QueueUrl is required
+            'QueueUrl' => $queueUrl,
+            'AttributeNames' => array('ApproximateNumberOfMessages'),
+        ));
+        $messagesCount = $result->getPath('Attributes/ApproximateNumberOfMessages');
+        return $messagesCount;
+
     }
 
     public function receiveMessages($queueUrl, $maximalMessages = 1)
@@ -97,6 +120,24 @@ class AwsSqsService
                 //echo $messageBody;
                 $returnMessages[] = $messageBody;
             }
+
+            $entrys = array();
+            $i = 0;
+            foreach ($result->getPath('Messages/*/ReceiptHandle') as $receiptHandle) {
+                $entrys[] = array(
+                    // Id is required
+                    'Id' => $i,
+                    // ReceiptHandle is required
+                    'ReceiptHandle' => $receiptHandle,
+                );
+                $i++;
+            }
+            $result = $this->service->deleteMessageBatch(array(
+                // QueueUrl is required
+                'QueueUrl' => $queueUrl,
+                // Entries is required
+                'Entries' => $entrys,
+            ));
         }
 
         return $returnMessages;
