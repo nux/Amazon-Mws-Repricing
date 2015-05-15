@@ -32,22 +32,34 @@ class MerchantDataListing extends \stdClass
     public function getCondition(){
         switch($this->itemcondition){
             case 1:
-                $condition = "Wie neu";
+                $condition = ItemCondition::CONDITION_LIKE_NEW;
                 break;
             case 2:
-                $condition = "Sehr gut";
+                $condition = ItemCondition::CONDITION_VERY_GOOD;
                 break;
             case 3:
-                $condition = "Gut";
+                $condition = ItemCondition::CONDITION_GOOD;
                 break;
             case 4:
-                $condition = 'Akzeptabel';
+                $condition = ItemCondition::CONDITION_ACCEPTABLE;
+                break;
+            case 5:
+                $condition = ItemCondition::CONDITION_COLLECTIBLE_LIKE_NEW;
+                break;
+            case 6:
+                $condition = ItemCondition::CONDITION_COLLECTIBLE_VERY_GOOD;
+                break;
+            case 7:
+                $condition = ItemCondition::CONDITION_COLLECTIBLE_GOOD;
+                break;
+            case 8:
+                $condition = ItemCondition::CONDITION_COLLECTIBLE_ACCEPTABLE;
                 break;
             case 11:
-                $condition = "Neu";
+                $condition = ItemCondition::CONDITION_NEW;
                 break;
             default:
-                $condition = "Unbekannt";
+                $condition = ItemCondition::CONDITION_UNKNOWN;
              break;
 
         }
