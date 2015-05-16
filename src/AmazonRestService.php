@@ -27,7 +27,10 @@ class AmazonRestService
             }
         }else{
             $pElement = $rightColumn->find('p', 0);
-            $pElement->children(0)->innertext = "";
+            $children = $pElement->children(0);
+            if($children){
+                $children->innertext = "";
+            }
             $sellerName = $pElement->plaintext;
         }
 
