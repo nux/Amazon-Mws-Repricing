@@ -44,6 +44,7 @@ class PaaService
     public function getCompetivePriceForAsin($asinList){
         $lookup = new Lookup();
         $lookup->setItemId($asinList);
+        //$lookup->setMerchantId("test");
         $lookup->setResponseGroup(array('Offers'));
         $formattedResponse = $this->service->runOperation($lookup);
         $simpleXML = simplexml_load_string($formattedResponse);

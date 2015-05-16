@@ -45,12 +45,18 @@ class MwsService
         $request = new \MarketplaceWebService_Model_GetReportListRequest();
         $request->setMerchant($this->config->getMerchantId());
         $request->setMarketplace($this->config->getMarketPlaceId());
+        $request->setMaxCount(100);
+        $typeList = new \MarketplaceWebService_Model_TypeList();
+        $typeList->setType("_GET_MERCHANT_LISTINGS_DATA_");
+        $request->setReportTypeList($typeList);
         $response = $this->service->getReportList($request);
+        var_dump($response);
         if ($response->isSetGetReportListResult()) {
             $getReportListResult = $response->getGetReportListResult();
             $reportInfoList = $getReportListResult->getReportInfoList();
             foreach ($reportInfoList as $reportInfo) {
                 $report = new ReportListItem();
+
                 if ($reportInfo->isSetReportId())
                 {
                     $report->setReportId($reportInfo->getReportId());
@@ -102,6 +108,20 @@ class MwsService
      * @return string
      */
     public function getLastInventoryReport(){
+        $lastReport = $this->getLastInventoryReportItem();
+        //print_r($lastReport);
+        $reportData = $this->getReport($lastReport);
+        //file_put_contents('inventory.csv',$reportData);
+        //print_r($reportData);
+        return $reportData;
+
+
+    }
+
+    /**
+     * @return ReportListItem
+     */
+    public function getLastInventoryReportItem(){
         // Get Report Id:
         $reportList = $this->getReportList();
         $lastReport = new ReportListItem();
@@ -113,13 +133,7 @@ class MwsService
                 $lastReport = $report;
             }
         }
-        //print_r($lastReport);
-        $reportData = $this->getReport($lastReport);
-        //file_put_contents('inventory.csv',$reportData);
-        //print_r($reportData);
-        return $reportData;
-
-
+        return $lastReport;
     }
 
     /**
