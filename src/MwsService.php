@@ -50,7 +50,7 @@ class MwsService
         $typeList->setType("_GET_MERCHANT_LISTINGS_DATA_");
         $request->setReportTypeList($typeList);
         $response = $this->service->getReportList($request);
-        var_dump($response);
+        //var_dump($response);
         if ($response->isSetGetReportListResult()) {
             $getReportListResult = $response->getGetReportListResult();
             $reportInfoList = $getReportListResult->getReportInfoList();
