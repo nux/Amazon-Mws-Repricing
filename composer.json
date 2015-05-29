@@ -15,7 +15,7 @@
     "raffw/mws-product-api": "dev-master",
     "exeu/apai-io": "dev-master",
     "twinsen/mws-subscription-api":"dev-master",
-    "aws/aws-sdk-php":"dev-master",
+    "aws/aws-sdk-php":"~2.8",
     "sunra/php-simple-html-dom-parser": "v1.5.0"
   },
   "repositories": [
