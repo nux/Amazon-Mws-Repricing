@@ -108,7 +108,7 @@ class MwsConfigModel implements MwsConfigInterface
      */
     public function getApplicationName()
     {
-        return 'Twinsen AmazonRepricer';
+        return 'inv';
     }
 
     /**
@@ -116,7 +116,7 @@ class MwsConfigModel implements MwsConfigInterface
      */
     public function getApplicationVersion()
     {
-        return '1.0';
+        return '0.1';
     }
 
 
