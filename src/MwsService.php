@@ -29,6 +29,7 @@ class MwsService
             'ProxyHost' => null,
             'ProxyPort' => -1,
             'MaxErrorRetry' => 3,
+            'CURLOPT_VERBOSE' => false,
         );
         $this->service = new \MarketplaceWebService_Client($config->getKeyId(), $config->getAccessKey(), $configArray,
             $config->getApplicationName(), $config->getApplicationVersion());
