@@ -10,7 +10,7 @@
     }
   ],
   "require": {
-    "plugmystore/amazon-mws-feeds": "dev-master",
+    "brickfox/mws": "dev-master",
     "parsecsv/php-parsecsv": "0.4.5",
     "raffw/mws-product-api": "dev-master",
     "exeu/apai-io": "dev-master",
